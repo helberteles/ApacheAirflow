@@ -1,0 +1,64 @@
+##Construa a imagem Docker:
+docker-compose build
+
+##Inicie os containers:
+docker-compose up -d
+
+##derrubar docker
+docker-compose down
+
+
+##Running Docker Compose for install your images
+docker-compose -f docker-compose.yml up -d
+
+##Start container
+docker images #list my images docker
+docker run -d linux_postgres #non-interactive mode 
+docker ps #list my container run
+
+
+##If update the script, copy the local to the container
+docker cp "C:\DSH_GestaoVista\docker\linux_postgres\scripts" id_name_container:/scripts
+
+##Enter container
+docker exec -it id_name_container /bin/bash
+
+##If update the script using -vi
+vi file_name #enter in file
+#edit the file
+#type ESC for exit edition
+:wq #type :wq for save and enter
+cat schemas-bombril.sql #for validation update
+
+##Start script
+ls -lart #list folders
+cd scripts #enter in folder
+chmod +x create_schema.sh #transforme file in executable
+./create_schema.sh #execute script
+
+##Exit container
+
+##Stop container
+docker stop id_name_container
+
+
+#Other commands
+docker exec -it id_name_container #interactive mode
+docker run -d id_name_container   #non-interactive mode 
+docker run -d id_name_container tail -f /dev/null #container active
+docker-compose -f docker-compose.yml up -d #runs in the background
+docker exec -it id_name_container /bin/bash #enter the container
+
+
+#Other commands remove images
+docker images
+docker rmi -f linux_postgres
+
+#Other commands remove container
+docker ps -a 
+docker rm id_name_container
+
+#Other commands remove volume
+docker volume ls
+docker volume rm id_name_container
+
